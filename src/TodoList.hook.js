@@ -1,46 +1,45 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import TodoItem from "./components/TodoItem";
 import "./css/TodoList.css";
 
-class TodoList extends Component {
+const addItem = event => {
+  // So here you were using a reference to a dom element. This is not a common practice, but it's not bad.
+  // This is just an alternative.
+  event.preventDefault();
+  if (this.state.todoName !== "") {
+    this.setState(prevState => ({
+      items: prevState.items.concat({
+        text: prevState.todoName,
+        id: Math.floor(Math.random() * 1000)
+      })
+    }));
+  }
+};
+
+const inputHandler = type => event => {
+  this.setState({
+    [type]: event.target.value
+  });
+};
+
+const removeToDo = id => {
+  const filteredItems = this.state.items.filter(item => {
+    return item.id !== id;
+  });
+
+  this.setState({
+    items: filteredItems
+  });
+};
+
+export default () => {
 	// you don't need a constructor here
 	// constructor here is just for getting methods from extending classes
 	state = {
 		items: [],
 		todoName: ""
 	};
-	addItem = event => {
-		// So here you were using a reference to a dom element. This is not a common practice, but it's not bad.
-		// This is just an alternative.
-		event.preventDefault();
-		if (this.state.todoName !== "") {
-			this.setState(prevState => ({
-				items: prevState.items.concat({
-					text: prevState.todoName,
-					id: Math.floor(Math.random() * 1000)
-				})
-			}));
-		}
-	};
-
-	// This is a higher order function, it's pretty useful for handling any number of inputs with just one function
-	inputHandler = type => event => {
-		this.setState({
-			[type]: event.target.value
-		});
-	};
-
-	removeToDo = id => {
-		const filteredItems = this.state.items.filter(item => {
-			return item.id !== id;
-		});
-
-		this.setState({
-			items: filteredItems
-		});
-	};
-
-	render() {
+	
 		return (
 			<div className="todoListMain">
 				<div className="header">
