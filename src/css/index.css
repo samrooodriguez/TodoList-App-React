@@ -1,10 +1,14 @@
-body{
-    padding: 50px;
-    background-color: #66CCFF;
-    font-family: sans-serif;
+body {
+	padding: 50px;
+	background-color: #66ccff;
+	font-family: sans-serif;
 }
 
-#container{
-    display: flex;
-    justify-content: flex;
+.header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.header a {
+	margin: 100px;
 }
